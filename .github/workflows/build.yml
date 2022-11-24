@@ -1,0 +1,24 @@
+name: build
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    - cron: '0 0 * * 3'
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run a one-line script
+        run: "bash prereqs.sh"
+      - uses: actions/upload-artifact@v3
+        with:
+          name: qcow2
+          path: output/*.qcow2
+      - uses: actions/upload-artifact@v3
+        with:
+          name: sha256
+          path: output/*.SHA256
