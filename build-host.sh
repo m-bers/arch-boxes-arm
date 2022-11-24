@@ -20,7 +20,7 @@ function init() {
 # Do some cleanup when the script exits
 function cleanup() {
   rm -rf "${TMPDIR}"
-  jobs -p | xargs sh -c "--no-run-if-empty kill || true"
+  jobs -p | xargs --no-run-if-empty kill || true
 }
 trap cleanup EXIT
 
