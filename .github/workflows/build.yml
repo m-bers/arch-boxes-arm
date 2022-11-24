@@ -12,8 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run a one-line script
+      - name: Install prerequisite packages
         run: "bash prereqs.sh"
+      - name: Build Arch Linux ARM images
+        run: "bash build-host.sh"
       - uses: actions/upload-artifact@v3
         with:
           name: qcow2
