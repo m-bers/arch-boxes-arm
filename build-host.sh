@@ -20,7 +20,15 @@ function init() {
 # Do some cleanup when the script exits
 function cleanup() {
   rm -rf "${TMPDIR}"
-  jobs -p | xargs --no-run-if-empty kill
+# DEBUG:
+# ********************************************
+# [  OK  ] Reached target System Power Off.
+# [  614.026667] reboot: Power down
+# kill: (3777): No such process
+# Error: Process completed with exit code 123.
+# ********************************************
+# Line 31 is (temporarily?) commented out because it triggered the above error in GitHub Actions.
+  # jobs -p | xargs --no-run-if-empty kill
 }
 trap cleanup EXIT
 
